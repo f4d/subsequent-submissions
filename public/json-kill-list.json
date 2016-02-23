@@ -1,0 +1,28 @@
+{
+  "blocked_notifications": [
+    {
+      "name": "New Guardian Request",
+      "to": "cyborgk@gmail.com",
+      "petfile": "1",
+      "gnum": "1"
+    },
+    {
+      "name": "Guardian Reminder",
+      "to": "cyborgk@gmail.com",
+      "petfile": "1",
+      "gnum": "1"
+    },
+   {
+      "name": "New Guardian Request",
+      "to": "cyborgk@gmail.com",
+      "petfile": "1",
+      "gnum": "2"
+    },
+   {
+      "name": "Guardian Reminder",
+      "to": "cyborgk@gmail.com",
+      "petfile": "2",
+      "gnum": "1"
+    }
+  ]
+}
