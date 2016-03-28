@@ -2,6 +2,41 @@
 require "MicroTest.php";
 use \PowInt\Tools\MicroTest as BaseTest;
 
+class TestNewPet extends BaseTest {
+	protected function setup() {
+		$this->add('getUserData');
+	}
+	public function getUserData() {
+		$userId = 115;
+		$meta = get_metadata('user', $userId);
+		$this->log("META for David Powers User 2:".print_r($meta, true));		
+		//echo('Heyyyy!');
+		return true;
+	}	
+	protected function cleanup() {
+		//clean out most pet meta for adminpowers user, to simplify testing!
+		$this->scrubMeta(115,0);
+		$this->log('*Cleaned meta for user #118, dpowers@rezon8...');
+	}	
+	private function scrubMeta($userId,$numberPets) {
+		$userId = $userId;
+		update_user_meta( $userId, 'how_many_pets_owned', $numberPets);
+		$index = $numberPets + 1;
+		for($p=$index;$p<2;$p++) {
+			//set info for each of the pet guardians
+			update_user_meta( $userId, "pet_{$p}_name", '');
+			for($g=1;$g<6;$g++) {
+				$prefix = "p{$p}_guardian_{$g}_";
+				$arr = array('prefix','first_name','last_name','email','mobile_phone','response');
+				foreach($arr as $a) {
+					//echo $prefix.$a."<br>";
+					update_user_meta( $userId, $prefix.$a, '');
+				}
+			}
+		}
+	}
+}
+
 class TestNotifications extends BaseTest {
 	public $notification,$form,$entry,$args;
 	protected function setup() {

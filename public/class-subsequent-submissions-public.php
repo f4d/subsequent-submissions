@@ -45,10 +45,12 @@ class Notify {
 		return ($this->notification['name'] == $no->name);
 	}
 	public function block() {
-		foreach ($this->kill_list as $kill_item) {
-			if($this->matches($kill_item)) {
-				add_filter( 'gform_pre_send_email', array( $this, 'abort_next_notification' ) );
-				break;
+		if(count($this->kill_list)>0) {
+			foreach ($this->kill_list as $kill_item) {
+				if($this->matches($kill_item)) {
+					add_filter( 'gform_pre_send_email', array( $this, 'abort_next_notification' ) );
+					break;
+				}
 			}
 		}
 	}
@@ -316,7 +318,7 @@ class Subsequent_Submissions_Public {
 		$killArr = [];
 		for($i=1;$i<($numPets+1);$i++) {
 			if(SubmissionsHelper::isPetNew($i,$meta)) {
-				echo "We got one!";
+				//echo "We got one!";
 				//if new pet, add guardians reminders to kill list
 				$killArr = array_merge($killArr,KillItem::killReminders($i));
 			} else {
@@ -423,14 +425,19 @@ class Subsequent_Submissions_Public {
 	}
 
 	public function test_submission($f) {
-		$test = new TestSubmissions();
+		$test = new TestNewPet();
 		echo $test->log;
+		
+
+		//$test = new TestSubmissions();
+		//echo $test->log;
+
 	}
 
 	public function test_notification($notification, $form, $entry) {
-		$test = new TestNotifications(array($notification,$form,$entry));
-		echo $test->log;
-		return $notification;
+		//$test = new TestNotifications(array($notification,$form,$entry));
+		//echo $test->log;
+		//return $notification;
 	}
 	public function test_notification2($notification, $form, $entry) {
 		$elog = print_r($notification, true);
