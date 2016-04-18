@@ -86,7 +86,7 @@ class TestSubmissions extends BaseTest {
 				$killArr = array_merge($killArr,KillItem::killReminders($i));
 				$this->debug($killArr,'$killArr');
 			} else {
-				$pets[$i] = Pet::getPet($pet_owner_id,$i,$meta);				
+				$pets[$i] = new Pet( $i, $pet_owner_id, $meta );
 			}
 		}
 		//now we take care of pets that aren't new

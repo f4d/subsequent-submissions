@@ -322,7 +322,7 @@ class Subsequent_Submissions_Public {
 				//if new pet, add guardians reminders to kill list
 				$killArr = array_merge($killArr,KillItem::killReminders($i));
 			} else {
-				$pets[$i] = Pet::getPet($pet_owner_id,$i,$meta);				
+				$pets[$i] = new Pet( $i, $pet_owner_id, $meta ) {
 			}
 		}
 		//now we take care of pets that aren't new
@@ -394,7 +394,7 @@ class Subsequent_Submissions_Public {
 		//otherwise, we need to create the Pet and Pet2 objects, and compare with
 		//Pet2::checkGuardianNotifications()
 		} else {
-			$pet = Pet::getPet($pet_owner_id,$petNum,$meta);			
+			$pet = new Pet( $petNum, $pet_owner_id, $meta ) {
 			GFCommon::log_debug( __METHOD__ . '(): Pet Object from Petfile Form: '.print_r($pet, true) );
 			$newPet = Pet2::getPet($pet->petfile,$data);
 			GFCommon::log_debug( __METHOD__ . '(): Pet2 Object from Petfile Form: '.print_r($newPet, true) );

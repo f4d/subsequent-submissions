@@ -16,7 +16,7 @@
  * Plugin Name:       Subsequent Submissions
  * Plugin URI:        http://rezon8.net/
  * Description:       Custom Million Pet Challenge Functionality to validate pet owner ID queue up all accepted pet guardians with a phone number that is not in the form entries for the bad numbers filter and show validation. The entriens in the bad number form are updated via the Twilio sms API
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            David Powers
  * Author URI:        http://rezon8.net/
  * License:           GPL-2.0+
